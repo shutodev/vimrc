@@ -30,6 +30,7 @@ syntax on
 set clipboard+=unnamed
 " バックスペース有効
 set backspace=indent,eol,start
+set hlsearch
 " *** 一般設定ここまで ***
 
 
@@ -81,6 +82,46 @@ autocmd ColorScheme * hi Visual ctermbg=90
 " カラースキームをmolokaiに(.vim/colors/molokai.vim)
 colorscheme molokai
 let g:molokai_original = 1
+" ***** vim-indent-guides関連ここまで *****
+
+
+" *********** neocomplete関連 **********
+highlight Pmenu ctermbg=4
+highlight PmenuSel ctermbg=1
+highlight PMenuSbar ctermbg=4
+" 補完ウィンドウの設定
+set completeopt=menuone
+" 補完ウィンドウの設定
+set completeopt=menuone
+" rsenseでの自動補完機能を有効化
+let g:rsenseUseOmniFunc = 1
+" let g:rsenseHome = '/usr/local/lib/rsense-0.3'
+" auto-ctagsを使ってファイル保存時にtagsファイルを更新
+let g:auto_ctags = 1
+" 起動時に有効化
+let g:neocomplete#enable_at_startup = 1
+" 大文字が入力されるまで大文字小文字の区別を無視する
+let g:neocomplete#enable_smart_case = 1
+" _(アンダースコア)区切りの補完を有効化
+let g:neocomplete#enable_underbar_completion = 1
+let g:neocomplete#enable_camel_case_completion  =  1
+" 最初の補完候補を選択状態にする
+let g:neocomplete#enable_auto_select = 1
+" ポップアップメニューで表示される候補の数
+let g:neocomplete#max_list = 20
+" シンタックスをキャッシュするときの最小文字長
+let g:neocomplete#min_syntax_length = 3
+" 補完の設定
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+  if !exists('g:neocomplete#keyword_patterns')
+            let g:neocomplete#keyword_patterns = {}
+          endif
+          let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" ***** neocomplete関連ここまで *****
 
 
 " ****************** quickrun関連 *******************
@@ -115,3 +156,20 @@ augroup END
 
 " 改行時にコメントを無効化
 autocmd FileType * set formatoptions-=ro
+
+
+" ********** キーマップの設定 **********
+nnoremap <Space>n  :NERDTree<CR>
+nnoremap ; :
+nnoremap  <C-c><C-c> :<C-u>nohlsearch<CR><Esc>
+nnoremap Y y$
+nnoremap ss :split
+nnoremap sv :vsplit
+nnoremap sh <C-w>h
+nnoremap sl <C-w>l
+nnoremap sk <C-w>k
+nnoremap sj <C-w>j
+nnoremap st :tabnew
+nnoremap sn gt
+nnoremap sp gT
+" ***** キーマップここまで *****
